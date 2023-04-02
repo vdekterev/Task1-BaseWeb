@@ -14,11 +14,12 @@ class Pages extends Controller
         $this->view('pages/index', $data);
     }
 
-    public function about(): void
+
+    public function login(): void
     {
         $data = [
-            'title' => 'About'
+            'title' => 'Login'
         ];
-        $this->view('pages/about', $data);
+        $this->view('pages/login', $data);
     }
 }
