@@ -1,4 +1,6 @@
 <?php
-  require_once '../app/bootstrap.php';
+require "../vendor/autoload.php";
+require_once '../app/bootstrap.php';
 
-  $init = new Core();
+// Initializing Core
+$init = new Core();
