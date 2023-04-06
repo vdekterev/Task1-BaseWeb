@@ -1,12 +1,19 @@
 <?php
 
+/**
+ * User Controller
+ */
 class Users extends Controller
 {
     public function __construct()
     {
+        $this->userModel = $this->model('User');
     }
 
-    public function register()
+    /**
+     * @return void
+     */
+    public function register(): void
     {
         $data = [
             'email' => '',
@@ -24,12 +31,14 @@ class Users extends Controller
         } else {
             // load view
         }
-        print_r($data);
         $this->view('users/register', $data);
 
     }
 
-    public function login()
+    /**
+     * @return void
+     */
+    public function login(): void
     {
         $data = [
             'email' => '',
@@ -39,15 +48,19 @@ class Users extends Controller
             'password_err' => ''
         ];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data['email'] = $_POST['email'];
-            $data['password'] = $_POST['password'];
+            $this->loginValidator($data);
         } else {
             // load view
             $this->view('users/login', $data);
         }
     }
 
-    public function registerValidator($data)
+    /**
+     * Register Validator
+     * @param array $data
+     * @return void
+     */
+    public function registerValidator(array $data): void
     {
         $data['email'] = trim($_POST['email']);
         $data['password'] = trim($_POST['password']);
@@ -55,8 +68,10 @@ class Users extends Controller
         // Email validation
         if (empty($data['email'])) {
             $data['email_err'] = 'Введите адрес электронной почты!';
-        } else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+        } else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             $data['email_err'] = 'Некорректный адрес электронной почты!';
+        } else if ($this->userModel->userExists($data['email'])) {
+            $data['email_err'] = 'Пользователь с таким email уже существует';
         }
         // Password validation
         if (empty($data['password'])) {
@@ -81,6 +96,34 @@ class Users extends Controller
             die('SUCCESS');
         } else {
             $this->view('users/register', $data);
+        }
+    }
+
+    /**
+     * Login Validator
+     * @param array $data
+     * @return void
+     */
+    public function loginValidator(array $data): void
+    {
+        $data['email'] = trim($_POST['email']);
+        $data['password'] = trim($_POST['password']);
+        // Email validation
+        if (empty($data['email'])) {
+            $data['email_err'] = 'Введите адрес электронной почты!';
+        } else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $data['email_err'] = 'Некорректный адрес электронной почты!';
+        } else if (!$this->userModel->userExists($data['email'])) {
+            $data['email_err'] = 'Пользователь не найден';
+        }
+        // Make sure errors are empty
+
+        if ((empty($data['email_err']) && empty($data['password_err']))) {
+            // Validated
+            die('Success');
+
+        } else {
+            $this->view('users/login', $data);
         }
     }
 }

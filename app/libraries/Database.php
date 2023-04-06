@@ -67,7 +67,7 @@ class Database
     }
 
     // Get single record as an object
-    public function getSingleRecord(): object
+    public function getSingleRecord(): object | false
     {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);
