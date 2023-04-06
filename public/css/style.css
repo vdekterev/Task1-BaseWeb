@@ -1,0 +1,25 @@
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #147af1;
+    background-color: white;
+    border-color: #000000; /*set the color you want here*/
+    transition: 0.75s;
+}
+
+
+.btn-light:hover, .btn-light:focus, .btn-light:active, .btn-light.active, .open>.dropdown-toggle.btn-light {
+    color: white;
+    background-color: #414141;
+    border-color: #ffffff; /*set the color you want here*/
+    transition: 0.75s;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open>.dropdown-toggle.btn-success {
+    color: white;
+    background-color: #147af1;
+    border-color: #ffffff; /*set the color you want here*/
+    transition: 0.75s;
+}
+
+a {
+    text-decoration: none;
+}
