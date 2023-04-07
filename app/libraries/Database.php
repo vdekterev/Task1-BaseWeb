@@ -1,19 +1,41 @@
 <?php
 
-/*
+
+/**
  * PDO Database Class
+ *
  */
 
 class Database
 {
-    // credentials
+    /** credentials
+     * @var string|mixed
+     */
     private string $host = DB_HOST;
+    /**
+     * @var string|mixed
+     */
     private string $username = DB_USERNAME;
+    /**
+     * @var string|mixed
+     */
     private string $password = DB_PASSWORD;
+    /**
+     * @var string|mixed
+     */
     private string $dbname = DB_NAME;
 
-    private $dbh; // Database Handler
+    /**
+     * @var PDO
+     */
+    private PDO $dbh; // Database Handler
+    /**
+     * @var PDOStatement
+     */
     private PDOStatement $stmt; // Statement
+    /**
+     * @var string
+     */
     private string $error;
 
     public function __construct()
@@ -33,13 +55,25 @@ class Database
         }
     }
 
-    // Prepare Query
+
+    /**
+     * Prepare Query
+     * @param string $sql
+     * @return void
+     */
     public function query(string $sql): void
     {
         $this->stmt = $this->dbh->prepare($sql);
     }
 
-    // Bind Value
+
+    /**
+     * Bind Value
+     * @param string $param
+     * @param mixed $value
+     * @param int|null $type
+     * @return void
+     */
     public function bind(string $param, mixed $value, int|null $type = null): void
     {
         if (is_null($type)) {
@@ -53,27 +87,39 @@ class Database
         $this->stmt->bindValue($param, $value, $type);
     }
 
-    // Execute the statement
+    /**
+     * Execute the statement
+     * @return bool
+     */
     public function execute(): bool
     {
         return $this->stmt->execute();
     }
 
-    // Get result as an array of objects
+    /**
+     * Get result as an array of objects
+     * @return array
+     */
     public function getResult(): array
     {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    // Get single record as an object
-    public function getSingleRecord(): object | false
+    /**
+     * Get single record as an object
+     * @return object|false
+     */
+    public function getSingleRecord(): object|false
     {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    // Get row count
+    /**
+     * Get row count
+     * @return int
+     */
     public function getRowCount(): int
     {
         return $this->stmt->rowCount();

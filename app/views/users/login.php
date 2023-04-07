@@ -3,6 +3,7 @@
         <div class="col-md-4 mx-auto">
             <div class="card mt-4">
                 <div class="card card-body bg-light">
+                    <?=flashMessage('register_success')?>
                     <h2>Авторизация</h2>
                     <form action="<?= URL_ROOT ?>/users/login" method="post">
                         <div class="mb-3">

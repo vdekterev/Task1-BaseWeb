@@ -27,12 +27,15 @@ class Users extends Controller
         ];
         // Check for POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->registerValidator($data);
-        } else {
-            // load view
+            $data = $this->registerValidator($data);
+            $errors = array($data['email_err'], $data['password_err'], $data['confirm_password_err'], $data['agreed_err']);
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            if (empty(array_filter($errors)) && $this->userModel->userRegister($data)) {
+                flashMessage('register_success', 'Вы успешно зарегистрированы!');
+                url_redirect('users/login');
+            }
         }
         $this->view('users/register', $data);
-
     }
 
     /**
@@ -58,9 +61,9 @@ class Users extends Controller
     /**
      * Register Validator
      * @param array $data
-     * @return void
+     * @return array
      */
-    public function registerValidator(array $data): void
+    public function registerValidator(array $data): array
     {
         $data['email'] = trim($_POST['email']);
         $data['password'] = trim($_POST['password']);
@@ -88,15 +91,7 @@ class Users extends Controller
             $data['agreed_err'] = 'Необходимо принять условия соглашения!';
         }
         // Make sure errors are empty
-        if (empty($data['email_err'])
-            && empty($data['password_err'])
-            && empty($data['confirm_password_err'])
-            && empty($data['agreed_err'])) {
-            // Validated
-            die('SUCCESS');
-        } else {
-            $this->view('users/register', $data);
-        }
+        return $data;
     }
 
     /**
