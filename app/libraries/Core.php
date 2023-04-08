@@ -9,7 +9,7 @@ class Core
 {
     protected string $currentController = 'Pages';
     protected object $controllerInstance;
-    protected string $currentMethod = 'index';
+    protected string $currentMethod = 'notfound';
     protected array $params = [];
     protected array $url;
 

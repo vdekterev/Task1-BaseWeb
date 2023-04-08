@@ -6,21 +6,21 @@ class Pages extends Controller
     {
     }
 
-    public function index()
+    public function feedback()
     {
         $data = [
             'title' => 'Welcome',
         ];
 
-        $this->view('pages/index', $data);
+        $this->view('pages/feedback', $data);
     }
 
-
-    public function login(): void
+    public function notfound()
     {
         $data = [
-            'title' => 'Login'
+            'title' => 'Welcome',
         ];
-        $this->view('pages/login', $data);
+
+        $this->view('pages/notfound', $data);
     }
 }
