@@ -31,6 +31,27 @@ class User
     }
 
     /**
+     * Login User
+     * @param string $email
+     * @param string $password
+     * @return false|object
+     */
+    public function userLogin(string $email, string $password): false|object
+    {
+        $this->db->query('SELECT * FROM users WHERE email = :email');
+        $this->db->bind(':email', $email);
+
+        $user = $this->db->getSingleRecord();
+        if (!$user) {
+            return false;
+        }
+        $hashedPassword = $user->password;
+        if (password_verify($password, $hashedPassword)){
+            return $user;
+        }
+        return false;
+    }
+    /**
      * Checks if users exists by email
      * @param string $email
      * @return object|bool

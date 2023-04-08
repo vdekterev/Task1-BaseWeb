@@ -11,12 +11,27 @@
                     <a class="nav-link active" aria-current="page" href="#">Главная</a>
                 </li>
             </ul>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item ms-auto mb-2 mb-lg-0">
-                    <a class="nav-link active" aria-current="page" href="#">Выйти</a>
-                </li>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item ms-auto mb-2 mb-lg-0">
+                        <a class="nav-link active" aria-current="page" href="<?= URL_ROOT ?>/users/logout">Выйти</a>
+                    </li>
+                </ul>
+            <?php else: ?>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item ms-auto mb-2 mb-lg-0">
+                        <a class="nav-link active" aria-current="page" href="<?= URL_ROOT ?>/users/login">Войти</a>
+                    </li>
+                </ul>
 
-            </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item ms-auto mb-2 mb-lg-0">
+                        <a class="nav-link active" aria-current="page" href="<?= URL_ROOT ?>/users/register">
+                            <button class="btn btn-secondary">Регистрация</button>
+                        </a>
+                    </li>
+                </ul>
+            <?php endif; ?>
         </div>
     </div>
 </nav>
