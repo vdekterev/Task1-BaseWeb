@@ -9,9 +9,9 @@ session_start();
  * @param string $name
  * @param string $message
  * @param string $class
- * @return string | array
+ * @return string
  */
-function flashMessage(string $name, string $message='', string $class = 'alert alert-success'): string | array
+function flashMessage(string $name, string $message='', string $class = 'alert alert-success'): string
 {
     // Try to print message
     $flashMessage = getFlashMessage($name);
@@ -20,12 +20,13 @@ function flashMessage(string $name, string $message='', string $class = 'alert a
         unset($_SESSION[$name]);
         return '';
     }
+
     $_SESSION[$name] = [
         'name' => $name,
         'message' => $message,
         'class' => $class
     ];
-    return $_SESSION[$name];
+    return $_SESSION[$name]['message'];
 }
 
 /**
@@ -35,9 +36,10 @@ function flashMessage(string $name, string $message='', string $class = 'alert a
  */
 function getFlashMessage(string $name): string
 {
-    if (!empty($_SESSION[$name])) {
+    if (!empty($_SESSION[$name]['message'])) {
         $class = $_SESSION[$name]['class'];
-        return "<div class='$class' id='flash-msg'>$_SESSION[$name]['message']</div>";
+        $message = $_SESSION[$name]['message'];
+        return "<div class='$class' id='flash-msg'>$message</div>";
     }
     return '';
 }
