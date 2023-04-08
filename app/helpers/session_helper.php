@@ -11,22 +11,24 @@ session_start();
  * @param string $class
  * @return string
  */
-function flashMessage(string $name, string $message='', string $class = 'alert alert-success'): string
+function flashMessage(string $name, string $message = '', string $class = 'alert alert-success'): string
 {
-    // Try to print message
-    $flashMessage = getFlashMessage($name);
-    if (!empty($flashMessage)){
-        echo $flashMessage;
-        unset($_SESSION[$name]);
+    if (!empty($message)) {
+        $_SESSION[$name] = [
+            'name' => $name,
+            'message' => $message,
+            'class' => $class
+        ];
         return '';
     }
+    if (isset($_SESSION[$name])){
+        $class = $_SESSION[$name]['class'];
+        $message = $_SESSION[$name]['message'];
+        unset($_SESSION[$name]);
+        return "<div class='$class' id='flash-msg'>$message</div>";
+    }
+    return '';
 
-    $_SESSION[$name] = [
-        'name' => $name,
-        'message' => $message,
-        'class' => $class
-    ];
-    return $_SESSION[$name]['message'];
 }
 
 /**
