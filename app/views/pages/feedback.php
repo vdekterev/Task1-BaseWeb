@@ -38,6 +38,8 @@
         </div>
     </form>
 <?php else:?>
-<h1>РЕГАЙСЯ</h1>
+    <div style="text-align: center" class="my-5">
+        <h1>👮✋🏼Для начала нужно <a href="<?= URL_ROOT ?>/users/register">зарегистрироваться</a>🛑</h1>
+    </div>
 <?php endif;?>
 <?php require APP_ROOT . '/views/inc/footer.php'; ?>
