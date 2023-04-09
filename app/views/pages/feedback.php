@@ -5,17 +5,19 @@
             <div class="card text-center">
                 <div class="card-header"><h2>Заказать консультацию</h2></div>
                 <div class="card-body">
-                    <label for="name"><h5>Ваше имя</h5></label>
+                    <label for="name"><h5>Имя</h5></label>
                     <input class="form-control" type="text" name="name">
                     <div class="mb-3">
                         <div class="mb-3">
-                            <h5>Ваш пол:</h5>
-                            <input class="form-check-input" type="radio" name="sex" value="male" checked>
-                            <label for="sex">Мужской</label>
-                            <input class="form-check-input" type="radio" name="sex" value="female">
-                            <label for="sex">Женский</label>
+                            <h5>Опыт в IT</h5>
+                            <input class="form-check-input" type="radio" name="experience" value="0" checked>
+                            <label for="experience">Нет опыта</label>
+                            <input class="form-check-input" type="radio" name="experience" value="1">
+                            <label for="experience">Меньше года</label>
+                            <input class="form-check-input" type="radio" name="experience" value="2">
+                            <label for="experience">Больше года</label>
                         </div>
-                        <h5>Ваша ОС:</h5>
+                        <h5>Ваша ОС</h5>
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="os">
                             <option value="windows" selected>Windows</option>
                             <option value="macos">MacOS</option>

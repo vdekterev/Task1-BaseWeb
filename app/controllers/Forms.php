@@ -12,5 +12,4 @@ class Forms extends Controller
         $this->formModel = $this->model('Form');
     }
 
-
 }
