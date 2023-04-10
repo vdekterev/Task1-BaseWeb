@@ -1,26 +1,21 @@
 <?php
 
+/**
+ * Pages Controller
+ */
 class Pages extends Controller
 {
     public function __construct()
     {
     }
 
-    public function feedback()
+    /**
+     * The only controller
+     * @return void
+     */
+    public function notfound(): void
     {
-        $data = [
-            'title' => 'Welcome',
-        ];
 
-        $this->view('pages/feedback', $data);
-    }
-
-    public function notfound()
-    {
-        $data = [
-            'title' => 'Welcome',
-        ];
-
-        $this->view('pages/notfound', $data);
+        $this->view('pages/notfound');
     }
 }

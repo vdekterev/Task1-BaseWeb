@@ -22,9 +22,9 @@
 
             <ul class="navbar-nav mx-1 mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?= URL_ROOT ?>/pages/feedback">
+                    <a class="nav-link active" aria-current="page" href="<?= URL_ROOT ?>/forms/index">
                         <button class="btn btn-light">Заказать консультацию</button>
-                        </a>
+                    </a>
                 </li>
             </ul>
 
