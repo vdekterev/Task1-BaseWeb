@@ -48,6 +48,11 @@ class Forms extends Controller
     public function view_form(): void
     {
         $sql = $this->formModel->getForm();
+        if (!$sql){
+            flashMessage('forms_warning', 'Нет заявок!');
+            $this->view('forms/view_form');
+            die();
+        }
         $data['name'] = $sql->name;
         $data['experience'] = $sql->experience;
         $data['os'] = $sql->os;
@@ -55,6 +60,12 @@ class Forms extends Controller
         $data['about'] = empty($sql->about) ? 'Информация отсутствует' : $sql->about;
         $data['created_at'] = date('d.m.y - H:i',strtotime((string)$sql->created_at));
         $this->view('forms/view_form', $data);
+    }
+
+    public function delete(): void
+    {
+        $this->formModel->deleteForm($_SESSION['user_id']);
+        $this->view('forms/delete');
     }
 
     public function formValidator(array $data): array

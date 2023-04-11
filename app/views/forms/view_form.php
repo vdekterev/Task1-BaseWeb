@@ -1,5 +1,9 @@
 <?php require APP_ROOT . '/views/inc/header.php'; ?>
-<?php if (isset($_SESSION['user_id'])) : ?>
+<?php if (flashMessage('forms_warning')) : ?>
+<div style="text-align: center" class="my-5">
+    <h1>У вас нет заявок, но вы всегда можете <a href="<?= URL_ROOT ?>/forms/index">добавить новую</a>!</h1>
+</div>
+<?php elseif (isset($_SESSION['user_id']))  : ?>
 <form method="post" action="<?= URL_ROOT ?>/forms/index" class="forms my-4 needs-validation">
     <div class="container col-4 ">
         <div class="card text-center">
@@ -56,7 +60,7 @@
                 <label for="about"><h5>Расскажите о себе</h5></label>
                 <textarea class="form-control mb-3" name="about" id="about" cols="30" rows="3" disabled><?=$data['about']?></textarea>
                 <div class="alert alert-danger" role="alert">
-                    Отредактировать заявку нельзя, но всегда можно отправить новую
+                    Отредактировать заявку нельзя, но можно отправить новую, при этом текущая заявка <b>удалится</b>!
                 </div>
                 <div class="dropdown">
                     <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -64,13 +68,14 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <li><a class="dropdown-item" href="<?= URL_ROOT ?>/forms/index">Отправить новую заявку</a></li>
-                        <li><a class="dropdown-item" href="#">Удалить  текущую заявку</a></li>
+                        <li><a class="dropdown-item" href="<?= URL_ROOT ?>/forms/delete">Удалить  текущую заявку</a></li>
                     </ul>
                 </div>
                 </div>
             </div>
         </div>
     </form>
+
 <?php else: ?>
     <div style="text-align: center" class="my-5">
         <h1>✋🏼Для начала нужно <a href="<?= URL_ROOT ?>/users/login">авторизоваться</a>🛑</h1>

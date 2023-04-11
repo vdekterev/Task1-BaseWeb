@@ -35,9 +35,10 @@ class Form
         return true;
     }
 
-    public function deleteForm(): bool
+    public function deleteForm($user_id): bool
     {
-        //
-        return true;
+        $this->db->query('DELETE FROM forms WHERE user_id = :user_id');
+        $this->db->bind(':user_id', $user_id);
+        return $this->db->execute();
     }
 }
