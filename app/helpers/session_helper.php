@@ -30,18 +30,3 @@ function flashMessage(string $name, string $message = '', string $class = 'alert
     return '';
 
 }
-
-/**
- * FlashMessage getter
- * @param string $name
- * @return string
- */
-function getFlashMessage(string $name): string
-{
-    if (!empty($_SESSION[$name]['message'])) {
-        $class = $_SESSION[$name]['class'];
-        $message = $_SESSION[$name]['message'];
-        return "<div class='$class' id='flash-msg'>$message</div>";
-    }
-    return '';
-}

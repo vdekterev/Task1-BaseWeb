@@ -145,15 +145,6 @@ class Users extends Controller
     {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['email'] = $user->email;
-        url_redirect('pages/index');
-    }
-
-    /**
-     * Check if user logged in
-     * @return bool
-     */
-    public function isLoggedIn(): bool
-    {
-        return isset($_SESSION['user_id']);
+        url_redirect('forms/index');
     }
 }

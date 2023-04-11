@@ -10,12 +10,21 @@ class Pages extends Controller
     }
 
     /**
-     * The only controller
+     * Not found page
      * @return void
      */
     public function notfound(): void
     {
 
         $this->view('pages/notfound');
+    }
+
+    /**
+     * Success page
+     * @return void
+     */
+    public function success(): void
+    {
+        $this->view('pages/success');
     }
 }

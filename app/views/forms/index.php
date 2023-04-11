@@ -11,31 +11,33 @@
                     <div class="invalid-feedback">
                         <?= $data['name_err'] ?>
                     </div>
+
                     <div class="my-3">
                         <div class="mb-3">
                             <h5>Опыт в IT</h5>
                             <input class="form-check-input <?= (!empty($data['experience_err'])) ? 'is-invalid' : '' ?>"
                                    type="radio" name="experience"
-                                   value="1">
+                                   value="1" id="experience">
                             <label for="experience">Нет опыта</label>
                             <input class="form-check-input <?= (!empty($data['experience_err'])) ? 'is-invalid' : '' ?>"
-                                   type="radio" name="experience" value="2">
+                                   type="radio" name="experience" id="experience" value="2">
                             <label for="experience">Меньше года</label>
                             <input class="form-check-input <?= (!empty($data['experience_err'])) ? 'is-invalid' : '' ?>"
-                                   type="radio" name="experience" value="3">
+                                   type="radio" name="experience" id="experience" value="3">
                             <label for="experience">Больше года</label>
                             <div class="invalid-feedback">
                                 <?= $data['experience_err'] ?>
                             </div>
                         </div>
+
                         <h5>Ваша ОС</h5>
                         <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" name="os">
-                            <option value="windows" selected>Windows</option>
-                            <option value="macos">MacOS</option>
-                            <option value="linux">Linux</option>
+                            <option value="1" selected>Windows</option>
+                            <option value="2">MacOS</option>
+                            <option value="3">Linux</option>
                         </select>
-                        <h5>Что вы хотите изучать:</h5>
 
+                        <h5>Что вы хотите изучать</h5>
                         <input class="form-check-input mx-2 <?= (!empty($data['learn_err'])) ? 'is-invalid' : '' ?>"
                                type="checkbox" name="php">PHP
                         <input class="form-check-input mx-2 <?= (!empty($data['learn_err'])) ? 'is-invalid' : '' ?>"
@@ -49,10 +51,11 @@
                         </div>
 
                     </div>
-                    <label for="about"><h5>Расскажите о себе:</h5></label>
+                    <label for="about"><h5>Расскажите о себе</h5></label>
                     <textarea class="form-control mb-3" name="about" id="about" cols="40" rows="5"></textarea>
                     <input class="btn btn-success mx-3" type="reset" value="Сбросить">
                     <button class="btn btn-primary mx-3">Отправить</button>
+
                 </div>
             </div>
         </div>
