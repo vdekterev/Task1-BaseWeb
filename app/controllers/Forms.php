@@ -23,7 +23,7 @@ class Forms extends Controller
     public function create(): void
     {
         $data = [
-            'user_id' => $_SESSION['user_id'],
+            'user_id' => $_SESSION['user_id'] ?? '',
             'name' => ucwords(trim($_POST['name'] ?? '')),
             'experience' => $_POST['experience'] ?? '',
             'os' => $_POST['os'] ?? '',
