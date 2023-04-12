@@ -45,7 +45,7 @@ class Forms extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = $this->formValidator($data);
-            $errors = array($data['name_err'], $data['learn_err']);
+            $errors = array($data['name_err'], $data['learn_err'], $data['experience_err']);
             if (empty(array_filter($errors))) {
                 if ($this->formModel->getForm()) {
                     $this->formModel->deleteForm($_SESSION['user_id']);

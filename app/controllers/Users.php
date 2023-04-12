@@ -145,6 +145,6 @@ class Users extends Controller
     {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['email'] = $user->email;
-        url_redirect('forms/index');
+        url_redirect('forms/create');
     }
 }
