@@ -1,6 +1,6 @@
 <?php require APP_ROOT . '/views/inc/header.php'; ?>
 <?php if (isset($_SESSION['user_id'])) : ?>
-    <form method="post" action="<?= URL_ROOT ?>/forms/index" class="forms my-4 needs-validation">
+    <form method="post" action="<?= URL_ROOT ?>/forms/create" class="forms my-4 needs-validation">
         <div class="container col-4 ">
             <div class="card text-center">
                 <div class="card-header"><h2>Заполните форму</h2></div>

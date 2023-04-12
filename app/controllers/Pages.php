@@ -15,7 +15,6 @@ class Pages extends Controller
      */
     public function notfound(): void
     {
-
         $this->view('pages/notfound');
     }
 

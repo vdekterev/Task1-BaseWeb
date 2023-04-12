@@ -12,7 +12,7 @@ class Forms extends Controller
         $this->formModel = $this->model('Form');
     }
 
-    public function index(): void
+    public function create(): void
     {
         $data = [
             'user_id' => $_SESSION['user_id'],
@@ -42,7 +42,7 @@ class Forms extends Controller
                 url_redirect('pages/success');
             }
         }
-        $this->view('forms/index', $data);
+        $this->view('forms/create', $data);
     }
 
     public function view_form(): void

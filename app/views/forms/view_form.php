@@ -1,10 +1,10 @@
 <?php require APP_ROOT . '/views/inc/header.php'; ?>
 <?php if (flashMessage('forms_warning')) : ?>
 <div style="text-align: center" class="my-5">
-    <h1>У вас нет заявок, но вы всегда можете <a href="<?= URL_ROOT ?>/forms/index">добавить новую</a>!</h1>
+    <h1>У вас нет заявок, но вы всегда можете <a href="<?= URL_ROOT ?>/forms/create">добавить новую</a>!</h1>
 </div>
 <?php elseif (isset($_SESSION['user_id']))  : ?>
-<form method="post" action="<?= URL_ROOT ?>/forms/index" class="forms my-4 needs-validation">
+<form method="post" action="<?= URL_ROOT ?>/forms/create" class="forms my-4 needs-validation">
     <div class="container col-4 ">
         <div class="card text-center">
             <div class="card-header"><h3>Добавлено: <?= $data['created_at'] ?></h3></div>
@@ -67,7 +67,7 @@
                         Действия
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="<?= URL_ROOT ?>/forms/index">Отправить новую заявку</a></li>
+                        <li><a class="dropdown-item" href="<?= URL_ROOT ?>/forms/create">Отправить новую заявку</a></li>
                         <li><a class="dropdown-item" href="<?= URL_ROOT ?>/forms/delete">Удалить  текущую заявку</a></li>
                     </ul>
                 </div>
