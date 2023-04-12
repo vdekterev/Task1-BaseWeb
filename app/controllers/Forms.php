@@ -5,6 +5,10 @@
  */
 class Forms extends Controller
 {
+    /**
+     * DataBase Instance
+     * @var object
+     */
     protected object $formModel;
 
     public function __construct()
@@ -12,6 +16,10 @@ class Forms extends Controller
         $this->formModel = $this->model('Form');
     }
 
+    /**
+     * Create Form Controller
+     * @return void
+     */
     public function create(): void
     {
         $data = [
@@ -38,17 +46,26 @@ class Forms extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = $this->formValidator($data);
             $errors = array($data['name_err'], $data['learn_err']);
-            if (empty(array_filter($errors)) && $this->formModel->createForm($data)) {
-                url_redirect('pages/success');
+            if (empty(array_filter($errors))) {
+                if ($this->formModel->getForm()) {
+                    $this->formModel->deleteForm($_SESSION['user_id']);
+                }
+                if ($this->formModel->createForm($data)) {
+                    url_redirect('pages/success');
+                }
             }
         }
         $this->view('forms/create', $data);
     }
 
+    /**
+     * View Form Controller
+     * @return void
+     */
     public function view_form(): void
     {
         $sql = $this->formModel->getForm();
-        if (!$sql){
+        if (!$sql) {
             flashMessage('forms_warning', 'Нет заявок!');
             $this->view('forms/view_form');
             die();
@@ -58,16 +75,25 @@ class Forms extends Controller
         $data['os'] = $sql->os;
         $data['learn'] = $sql->learn;
         $data['about'] = empty($sql->about) ? 'Информация отсутствует' : $sql->about;
-        $data['created_at'] = date('d.m.y - H:i',strtotime((string)$sql->created_at));
+        $data['created_at'] = date('d.m.y - H:i', strtotime((string)$sql->created_at));
         $this->view('forms/view_form', $data);
     }
 
+    /**
+     * Delete Form Controller
+     * @return void
+     */
     public function delete(): void
     {
         $this->formModel->deleteForm($_SESSION['user_id']);
         $this->view('forms/delete');
     }
 
+    /**
+     * Form Validator
+     * @param array $data
+     * @return array
+     */
     public function formValidator(array $data): array
     {
         if (empty($data['name'])) {

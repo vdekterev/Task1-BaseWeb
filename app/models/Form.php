@@ -1,7 +1,14 @@
 <?php
 
+/**
+ *
+ */
 class Form
 {
+    /**
+     * Database Instance
+     * @var Database
+     */
     private Database $db;
 
     public function __construct()
@@ -9,6 +16,11 @@ class Form
         $this->db = new Database();
     }
 
+    /**
+     * Create Method
+     * @param array $formdata
+     * @return bool
+     */
     public function createForm(array $formdata): bool
     {
         $this->db->query('INSERT INTO forms (user_id, name, experience, os, learn, about) 
@@ -22,6 +34,10 @@ class Form
         return $this->db->execute();
     }
 
+    /**
+     * Read Method
+     * @return false|object
+     */
     public function getForm(): false|object
     {
         $this->db->query('SELECT * FROM forms WHERE user_id = :user_id');
@@ -29,12 +45,21 @@ class Form
         return $this->db->getSingleRecord();
     }
 
+    /**
+     * Update Method
+     * @return bool
+     */
     public function updateForm(): bool
     {
         //
         return true;
     }
 
+    /**
+     * Delete Method
+     * @param $user_id
+     * @return bool
+     */
     public function deleteForm($user_id): bool
     {
         $this->db->query('DELETE FROM forms WHERE user_id = :user_id');

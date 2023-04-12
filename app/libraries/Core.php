@@ -1,21 +1,24 @@
 <?php
-/*
+
+/**
  * App Core Class
  * Creates URL & loads Core Controller
  * URL TEMPLATE - /controller/method/parameters
  */
-
 class Core
 {
     /**
+     * Default Controller
      * @var string
      */
     protected string $currentController = 'Pages';
     /**
+     * Controller Instance
      * @var object
      */
     protected object $controllerInstance;
     /**
+     * Default Method
      * @var string
      */
     protected string $currentMethod = 'notfound';
